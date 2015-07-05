@@ -1,0 +1,31 @@
+{
+  "name": "sharks-with-laser-beams",
+  "version": "0.0.0",
+  "description": "shark with laser beams",
+  "main": "''",
+  "dependencies": {
+    "cli-table": "~0.3.1",
+    "lodash": "~3.10.0",
+    "q": "~1.4.1",
+    "string-format": "~0.5.0",
+    "superagent": "~1.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/juancjara/sharks-with-laser-beams.git"
+  },
+  "keywords": [
+    "sharks",
+    "laser",
+    "beams"
+  ],
+  "author": "juanc.jara",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/juancjara/sharks-with-laser-beams/issues"
+  }
+}
