@@ -1,29 +1,32 @@
-var fs = require('fs');
+var _ = require('lodash');
 
-var path = '../droplets.json';
+var commonStorage = require('./common-storage');
 
 var droplet = {
+  mainField: 'droplets',
+  path: __dirname + '/../droplets.json',
+
   save: function(data) {
-    data = JSON.stringify({droplets: data});
-    fs.writeFileSync(path, data);
+    droplet.set(droplet.mainField, data);
   },
 
-  all: function() {
-    return JSON.parse(fs.readFileSync(path, 'utf8')).droplets;
+  getDroplets: function() {
+    return droplet.get(droplet.mainField);
   },
 
   ids: function() {
-    return droplet.all().map(function(d) {return d.id});
+    return droplet.getDroplets().map(function(d) {return d.id});
   },
 
   ips: function() {
-    return droplet.all().map(function(d) {return d.ip});
+    return droplet.getDroplets().map(function(d) {return d.ip});
   },
 
   clean: function() {
     droplet.save([]);
   }
-
 }
+
+_.assign(droplet, commonStorage);
 
 module.exports = droplet;

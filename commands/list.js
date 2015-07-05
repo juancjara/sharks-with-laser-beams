@@ -4,7 +4,7 @@ var dropletStorage = require('../storage/droplet');
 
 var list = function() {
   digitalOceanAPI.list().then(function(droplestInfo) {
-    droplestStorage.save(list);
+    dropletStorage.save(droplestInfo);
     logTable(droplestInfo);
   });
 }

@@ -8,7 +8,7 @@ var Q = require('q');
 var dropletStorage = require('./storage/droplet.js');
 var configStorage = require('./storage/config.js');
 
-var token = configStorage.get('token');
+var token = configStorage.getToken();
 var endPoint = 'https://api.digitalocean.com/v2';
 
 var defaults = {
@@ -29,7 +29,7 @@ var methods = {
 
 var getToken = function() {
   if (token) return token;
-  return token = configStorage.get('token');
+  return token = configStorage.getToken();
 }
 
 var getFingerPrint = function(path) {
@@ -103,16 +103,16 @@ var list =function() {
   
   return Q.promise(function(resolve, reject) {
     var ids = dropletStorage.ids();
-
+    
     consume(endPoint + '/droplets', {}, methods.GET)
       .then(function(data) {
-        
+    
         var filtered = data.droplets
           .filter(function(droplet) {
             return _.includes(ids, droplet.id);
           })
           .map(extractData);
-
+    
         resolve(filtered);
       });
   })

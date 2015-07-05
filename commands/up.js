@@ -23,6 +23,7 @@ var waitInstancesActive = function() {
       if (numActives !== list.length) {
         setTimeout(waitInstancesActive, 3000);
       } else {
+        process.stdout.write("\n");
         logTable(list);
         dropletStorage.save(list);
         console.log('\nsharks ready');
@@ -33,7 +34,6 @@ var waitInstancesActive = function() {
 var handleNewInstaces = function(newDroplets) {
   var ids = newDroplets.map(function(e) {return {id: e.droplet.id}});
   dropletStorage.save(ids);
-
   waitInstancesActive();
 }
 

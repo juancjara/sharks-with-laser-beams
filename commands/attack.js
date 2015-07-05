@@ -16,9 +16,9 @@ var attack = function(requests, current, url) {
   current = current || 25;
   var ips = dropletStorage.ips();
   var command = format(commandTemplate, ips.join(' \\n '), ips.length, requests, current, url);
-  //console.log(command);
   exec(command, puts);
-  console.log('pew pew !')
+  console.log('pew pew !');
 }
 
-attack(null, null, 'http://www.dotapractice.com/');
+module.exports = attack;
+attack.attack = attack;

@@ -1,25 +1,23 @@
 var fs = require('fs');
+var _ = require('lodash');
 
-var path = '../config.json';
+var commonStorage = require('./common-storage');
 
 var config = {
-  save: function(data) {
-    fs.writeFileSync(path, JSON.stringify(data));
+
+  path: __dirname + '/../config.json',
+
+  setToken: function() {
+    config.set('token');
   },
 
-  set: function(field, data) {
-    var obj= {} 
-    obj[field] = data;
-    config.save(obj);
-  },
-
-  all: function() {
-    return JSON.parse(fs.readFileSync(path, 'utf8'));
-  },
-
-  get: function(field) {
-    return config.all().field;
+  getToken: function() {
+    //or just should call config.get('token'), 
+    //cause if misspelled error is hard to debug
+    return config.get('token');
   }
 };
+
+_.assign(config, commonStorage);
 
 module.exports = config;
